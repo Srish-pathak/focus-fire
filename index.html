@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Focus Fire — build a fire by staying focused</title>
+<meta name="description" content="A small, honest focus timer. Stay with it and the fire grows. Walk away and it just goes out — no shame, no streaks lost.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="page">
+    <header class="hero">
+      <p class="eyebrow" id="dateLabel">—</p>
+      <h1 class="title">Focus <em>Fire</em></h1>
+      <p class="subhead">Stay with it and the fire builds. Walk away and it just goes out — no shame, no streak lost. Just start again.</p>
+    </header>
+
+    <section class="hearth" aria-label="Fire timer">
+      <div class="fire-wrap">
+        <svg class="fire-svg" id="fireSvg" viewBox="0 0 200 220" role="img" aria-label="Campfire, grows as your session progresses">
+          <ellipse cx="100" cy="196" rx="58" ry="8" fill="rgba(10,11,18,0.35)"/>
+          <g id="logs">
+            <rect x="58" y="182" width="84" height="10" rx="4" fill="#4a3a2e" transform="rotate(-6 100 187)"/>
+            <rect x="60" y="188" width="80" height="10" rx="4" fill="#5a4636" transform="rotate(7 100 193)"/>
+          </g>
+          <g id="emberField"></g>
+          <g id="flameGroup" transform="translate(100,182) scale(0.15)">
+            <path id="flameOuter" d="M0,-4 C -22,-40 -14,-70 0,-100 C 14,-70 22,-40 0,-4 Z" fill="#ef8354"/>
+            <path id="flameInner" d="M0,-6 C -12,-30 -8,-52 0,-76 C 8,-52 12,-30 0,-6 Z" fill="#f4a261"/>
+            <path id="flameCore" d="M0,-8 C -6,-22 -4,-36 0,-52 C 4,-36 6,-22 0,-8 Z" fill="#ffd8a8"/>
+          </g>
+        </svg>
+      </div>
+
+      <p class="timer-readout" id="timerReadout">25:00</p>
+      <p class="timer-stage" id="timerStage">Ready when you are</p>
+
+      <div class="durations" id="durations" role="group" aria-label="Session length">
+        <button type="button" class="dur-chip" data-minutes="15">15</button>
+        <button type="button" class="dur-chip is-selected" data-minutes="25">25</button>
+        <button type="button" class="dur-chip" data-minutes="45">45</button>
+        <button type="button" class="dur-chip" data-minutes="60">60</button>
+      </div>
+
+      <div class="controls">
+        <button type="button" class="btn btn-primary" id="startPauseBtn">Start focusing</button>
+        <button type="button" class="btn btn-ghost" id="resetBtn" hidden>Let it go out</button>
+      </div>
+    </section>
+
+    <section class="woodpile" aria-label="Your session history">
+      <div class="woodpile-summary">
+        <p class="woodpile-total" id="todayTotal">0 min focused today</p>
+        <p class="woodpile-count" id="todayCount">0 sessions</p>
+      </div>
+      <ul class="log-list" id="logList"></ul>
+      <p class="empty" id="emptyLog">No sessions logged yet. Finish one and it'll stack up here.</p>
+    </section>
+
+    <footer class="foot">
+      <p>Data lives only in this browser, via <code>localStorage</code>. A session only logs when it finishes fully.</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
